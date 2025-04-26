@@ -14,6 +14,7 @@
     <div class="container">
         <form action="{% url 'tasks:register' %}" method="post">
             {% csrf_token %}
+            {# TODO: ヘッダーの固定 #}
             <table>
                 <tr>
                     <th class="left_corner">タスク名：</th>
@@ -36,11 +37,11 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <div class="button">
-                            <button class="submit_button">
-                                <input name="register" type="submit" value="作成">
+                        <div class="button_group">
+                            <button class="button register">
+                                <input type="submit" value="作成">
                             </button>
-                            <button class="form_reset_button">
+                            <button class="button reset">
                                 <a href="{% url 'tasks:register' %}">reset</a>
                             </button>
                         </div>
@@ -49,7 +50,7 @@
             </table>
         </form>
     </div>
-    <button class="link_button">
+    <button class="button link">
         <a href="{% url 'tasks:index' %}">タスク一覧へ戻る</a>
     </button>
 </main>

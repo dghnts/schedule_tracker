@@ -1,10 +1,9 @@
-.submit_button {
+.button {
     padding:5px 10px;
-    margin-bottom: 5px;
+    margin: 10px;
     margin-right: 5px;
     border-radius: 10px;
     border:none;
-    background-color: #19aa00;
     & *{
         background:none;
         border:none;
@@ -13,49 +12,45 @@
     }
 }
 
-.submit_button:hover{
-    background-color: #198754;
-}
-
-.form_reset_button{
-    justify-content:right;
-    padding:8px 15px;
-    margin-bottom: auto;
-    margin-right: 5px;
-    border-radius: 10px;
-    border:none;
-    background-color: #ffc107;
-    & *{
-        background:none;
-        border:none;
-        color: #fff;
-        text-decoration: none;
+/* 作成ボタン */
+.register{
+    background-color: #4CAF50;
+    &:hover{
+        background-color: #388E3C;
     }
 }
 
-.form_reset_button:hover{
-    background-color: #f0c100;
+/* リンクボタン */
+.link{
+    background-color: #0d6efd;
+    &:hover{
+        background-color: #0b5ed7;
+    }
 }
 
-.button{
+.update{
+    background-color: #009688;
+    &:hover{
+        background-color: #00796B;
+    }
+}
+
+/* 削除 */
+.delete{
+    background-color: #F44336;
+    &:hover{
+        background-color: #D32F2F;
+    }
+}
+
+.reset{
+    background-color: #9E9E9E;
+    &:hover{
+    background-color: #757575;
+    }
+}
+
+.button_group{
     display:flex;
     justify-content:right;
-}
-
-.link_button {
-    padding:10px 10px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border:none;
-    background-color: #0d6efd;
-    & *{
-        background:none;
-        border:none;
-        color: #fff;
-        text-decoration: none;
-    }
-}
-
-.link_button:hover{
-    background-color: #0b5ed7;
 }

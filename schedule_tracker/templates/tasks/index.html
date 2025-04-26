@@ -14,7 +14,7 @@
     <hr/>
 </header>
 <main>
-    <button class="link_button">
+    <button class="button link">
         <a href="{% url 'tasks:register' %}">新規作成</a>
     </button>
     <div class="container">
@@ -41,7 +41,7 @@
                 <td>{{task.created_at}}</td>
                 <td>{{task.updated_at}}</td>
                 <td><a href="{% url 'tasks:update' task.id %}">更新</a></td>
-                <td><a href="">削除</a></td>
+                <td><a href="{% url 'tasks:delete' task.id %}">削除</a></td>
             </tr>
             {% endfor %}
         </table>

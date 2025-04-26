@@ -62,7 +62,7 @@ class TaskUpdateView(View):
 
     def post(self,request, pk, *args, **kwargs):
         # pkをidにもつtaskの情報を取得
-        task = Task.objects.get(id=pk)
+        task = Task.objects.filter(id=pk).first()
 
         # 送信された情報でtaskの情報を更新する
         post_form = TaskRegisterForm(request.POST,instance=task)
@@ -76,5 +76,20 @@ class TaskUpdateView(View):
 
         return redirect("tasks:index")
 
-
 task_update_view = TaskUpdateView.as_view()
+
+class TaskDeleteView(View):
+    def get(self,request, pk,*args, **kwargs):
+        context = dict()
+        context["task"] = Task.objects.filter(id=pk).first()
+
+        return render(request,"tasks/delete.html",context)
+
+    def post(self,request, pk, *args, **kwargs):
+        task = Task.objects.filter(id=pk).first()
+
+        task.delete();
+
+        return redirect("tasks:index")
+
+task_delete_view = TaskDeleteView.as_view()
