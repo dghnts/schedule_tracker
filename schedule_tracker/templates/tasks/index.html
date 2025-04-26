@@ -1,0 +1,53 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>タスク一覧</title>
+    <link href="{% static 'css/common.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1>タスク一覧</h1>
+    <hr/>
+</header>
+<main>
+    <button class="button link">
+        <a href="{% url 'tasks:register' %}">新規作成</a>
+    </button>
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th class="left_corner">タスク名</th>
+                <th>説明</th>
+                <th>期限</th>
+                <th>進捗状況</th>
+                <th>作成日時</th>
+                <th>更新日時</th>
+                <th>更新</th>
+                <th>削除</th>
+            </tr>
+            </thead>
+
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.due_date}}</td>
+                <td><span class="status {{ task.get_status_display }}">{{task.get_status_display}}</span></td>
+                <td>{{task.created_at}}</td>
+                <td>{{task.updated_at}}</td>
+                <td><a href="{% url 'tasks:update' task.id %}">更新</a></td>
+                <td><a href="{% url 'tasks:delete' task.id %}">削除</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+</main>
+</body>
+</html>

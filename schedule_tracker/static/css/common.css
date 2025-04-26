@@ -1,0 +1,109 @@
+@import url("./button.css");
+
+/* common */
+hr {
+    width:90%;
+    margin: 20px auto;
+}
+
+/* header */
+header {
+    text-align:center;
+}
+
+/* main */
+main {
+    text-align:center;
+}
+
+/* table */
+
+/* tableをflexbox化する*/
+.container {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+/* table全体の設定 */
+
+table{
+    /* 変数 */
+    --border-radius:6px;
+    --color:#f4f4f9;
+    --border-width:1px;
+    --data-padding:10px;
+
+    /* 全体レイアウト */
+    /* border */
+    border-spacing:0; /* 境界線の間のスペースをなくす */
+    border-collapse: separate;
+    border-radius:var(--border-radius);
+    border-left:var(--border-width) solid var(--color);
+    border-top:var(--border-width) solid var(--color);
+
+    /* 影 */
+    box-shadow: 2px 2px #ccc;
+}
+
+th{
+    padding: var(--data-padding);
+    border-bottom:var(--border-width) solid var(--color);
+    border-right:var(--border-width) solid var(--color);
+    background-color: #007bff;
+    color: #fff;
+    &.left_corner{
+        border-radius: var(--border-radius) 0 0 0;
+    }
+    &:last-child{
+        border-radius: 0 var(--border-radius) 0 0;
+        border-right-style:none;
+    }
+}
+
+/* 各データのレイアウト */
+td {
+    background-color: #fff;
+    padding: var(--data-padding);
+    border-bottom:var(--border-width) solid var(--color);
+	border-right:var(--border-width) solid var(--color);
+}
+
+tr{
+    & td:last-child{
+        border-right-style:none;
+    }
+}
+
+tr:last-child{
+  & td:first-child{
+    border-radius: 0 0 0 var(--border-radius);
+  }
+  & td:last-child{
+    border-radius: 0 0 var(--border-radius) 0;
+  }
+}
+
+/* 進捗状況に応じて背景色を変更する */
+.status{
+    padding: 5px;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.status_select{
+    width:100%;
+}
+
+.todo{
+    background-color: #808080;
+}
+
+.doing{
+    background-color: #007bdf;
+}
+
+.done{
+    background-color: #00cc88;
+}
+
