@@ -6,7 +6,7 @@ from django.template.defaultfilters import length
 # Create your models here.
 class Task(models.Model):
     STATUS_CHOICES = [
-        ('tido', "未着手"),
+        ('todo', "未着手"),
         ('doing', "進行中"),
         ('done', "完了")
     ]
