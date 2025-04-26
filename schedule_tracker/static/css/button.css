@@ -1,0 +1,61 @@
+.register_button {
+    padding:5px 10px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    border-radius: 10px;
+    border:none;
+    background-color: #19aa00;
+    & *{
+        background:none;
+        border:none;
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.register_button:hover{
+    background-color: #198754;
+}
+
+.form_reset_button{
+    justify-content:right;
+    padding:8px 15px;
+    margin-bottom: auto;
+    margin-right: 5px;
+    border-radius: 10px;
+    border:none;
+    background-color: #ffc107;
+    & *{
+        background:none;
+        border:none;
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.form_reset_button:hover{
+    background-color: #f0c100;
+}
+
+.submit_button{
+    display:flex;
+    justify-content:right;
+}
+
+.link_button {
+    padding:10px 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border:none;
+    background-color: #0d6efd;
+    & *{
+        background:none;
+        border:none;
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.link_button:hover{
+    background-color: #0b5ed7;
+}

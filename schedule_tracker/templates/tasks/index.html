@@ -1,26 +1,36 @@
+{% load static %}
 <!doctype html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>タスク一覧</title>
+    <link href="{% static 'css/common.css' %}" rel="stylesheet">
 </head>
 <body>
+
 <header>
     <h1>タスク一覧</h1>
+    <hr/>
 </header>
 <main>
-    <a href="{% url 'tasks:register' %}">新規作成</a>
-    <table border="1">
-        <tr>
-            <th>タスク名</th>
-            <th>説明</th>
-            <th>期限</th>
-            <th>進捗状況</th>
-            <th>作成日時</th>
-            <th>更新日時</th>
-        </tr>
-        {% for task in tasks %}
+    <button class="link_button">
+        <a href="{% url 'tasks:register' %}">新規作成</a>
+    </button>
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th class="left_corner">タスク名</th>
+                <th>説明</th>
+                <th>期限</th>
+                <th>進捗状況</th>
+                <th>作成日時</th>
+                <th>更新日時</th>
+            </tr>
+            </thead>
+
+            {% for task in tasks %}
             <tr>
                 <td>{{ task.title }}</td>
                 <td>{{task.description}}</td>
@@ -29,8 +39,10 @@
                 <td>{{task.created_at}}</td>
                 <td>{{task.updated_at}}</td>
             </tr>
-        {% endfor %}
-    </table>
+            {% endfor %}
+        </table>
+
+    </div>
 
 </main>
 </body>
