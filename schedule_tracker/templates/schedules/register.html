@@ -3,12 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>タスク新規作成</title>
+    <title>スケジュール新規作成</title>
     <link href="{% static 'css/common.css' %}" rel="stylesheet">
 </head>
 <body>
 <header>
-    <h1>タスク新規作成</h1>
+    <h1>スケジュール新規作成</h1>
 </header>
 <main>
     <div class="container">
@@ -17,22 +17,37 @@
             {# TODO: ヘッダーの固定 #}
             <table>
                 <tr>
-                    <th class="left_corner">タスク名：</th>
+                    <th class="left_corner">スケジュール名：</th>
                     <td>
-                        <input name="title" placeholder="タスク名" required size=50 type="text">
+                        <input name="title" placeholder="スケジュール名" required size=50 type="text">
                     </td>
                 </tr>
                 <tr>
-                    <th>説明（任意）：</th>
+                    <th>日時：</th>
                     <td>
-                        <textarea cols=52 name="description" placeholder="タスクの詳細を記入してください"
-                                  rows=2></textarea>
+                        <input type="date" name="date" value="日付" required>
                     </td>
                 </tr>
                 <tr>
-                    <th>期限：</th>
+                    <th>時間：</th>
                     <td>
-                        <input name="due_date" required type="date">
+                        <input type="time" name="time" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th>メモ：</th>
+                    <td>
+                        <textarea name="memo" cols=52 rows=2 placeholder="作業内容についての補足など"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>時間：</th>
+                    <td>
+                        <select name="task">
+                            {% for task in tasks %}
+                                <option value={{ task.id }}>{{ task.title }} </option>
+                            {% endfor %}
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -51,7 +66,7 @@
         </form>
     </div>
     <button class="button link">
-        <a href="{% url 'schedules:index' %}">タスク一覧へ戻る</a>
+        <a href="{% url 'schedules:index' %}">スケジュール一覧へ戻る</a>
     </button>
 </main>
 </body>

@@ -4,6 +4,7 @@ from django.db.models import Q
 
 from django.views import View
 
+from tasks.models import Task
 from .models import Schedules
 from .forms import ScheduleRegisterForm
 
@@ -27,17 +28,14 @@ class ScheduleRegisterView(View):
         # formという名前でScheduleRegisterFormを追加
         context["form"] = ScheduleRegisterForm()
 
+        # 登録されているタスク一覧をcontext二格納
+        context["tasks"] = Task.objects.filter(Q(due_date__gte=datetime.now().date())|Q(status__regex="[01]"))
+
         return render(request,"schedules/register.html",context)
 
     def post(self, request, *args, **kwargs):
-        # form二送信された値をコピー
-        copy = request.POST.copy()
-
-        # statusに初期値を設定する
-        copy["status"] = "0"
-
         #formに送信されたデータを追加
-        post_form = ScheduleRegisterForm(copy)
+        post_form = ScheduleRegisterForm(request.POST)
 
         # バリデーションエラーのチェック
         if not post_form.is_valid():
