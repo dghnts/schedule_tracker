@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>タスク新規作成</title>
+    <link href="{% static 'css/common.css' %}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>タスク新規作成</h1>
+</header>
+<main>
+    <div class="container">
+        <form action="{% url 'schedules:register' %}" method="post">
+            {% csrf_token %}
+            {# TODO: ヘッダーの固定 #}
+            <table>
+                <tr>
+                    <th class="left_corner">タスク名：</th>
+                    <td>
+                        <input name="title" placeholder="タスク名" required size=50 type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <th>説明（任意）：</th>
+                    <td>
+                        <textarea cols=52 name="description" placeholder="タスクの詳細を記入してください"
+                                  rows=2></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>期限：</th>
+                    <td>
+                        <input name="due_date" required type="date">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="button_group">
+                            <button class="button register">
+                                <input type="submit" value="作成">
+                            </button>
+                            <button class="button reset">
+                                <a href="{% url 'schedules:register' %}">reset</a>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <button class="button link">
+        <a href="{% url 'schedules:index' %}">タスク一覧へ戻る</a>
+    </button>
+</main>
+</body>
+</html>

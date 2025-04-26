@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>スケジュール一覧</title>
+    <link href="{% static 'css/common.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1>スケジュール一覧</h1>
+    <hr/>
+</header>
+<main>
+    <button class="button link">
+        <a href="{% url 'schedules:register' %}">新規作成</a>
+    </button>
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th class="left_corner">スケジュール名</th>
+                <th>日付</th>
+                <th>時間</th>
+                <th>メモ</th>
+                <th>タスク名</th>
+                <th>作成日時</th>
+                <th>更新日時</th>
+                <th>更新</th>
+                <th>削除</th>
+            </tr>
+            </thead>
+
+            {% for schedule in schedules %}
+            <tr>
+                <td>{{ schedule.title }}</td>
+                <td>{{schedule.date}}</td>
+                <td>{{schedule.time}}</td>
+                <td>{{schedule.memo }}</td>
+                <td>{{ schedule.task.title }}</td>
+                <td>{{schedule.created_at}}</td>
+                <td>{{schedule.updated_at}}</td>
+                <td><a href="{% url 'schedules:update' schedule.id %}">更新</a></td>
+                <td><a href="{% url 'schedules:delete' schedule.id %}">削除</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+</main>
+</body>
+</html>
