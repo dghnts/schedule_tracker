@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.urls import path
 
-from .views import task_index_view
+app_name = 'tasks'
+from .views import task_index_view, task_register_view
 
 urlpatterns = [
-    path('', task_index_view,name='tasks_index')
+    path('', task_index_view,name='index'),
+    path('register', task_register_view,name="register")
 ]

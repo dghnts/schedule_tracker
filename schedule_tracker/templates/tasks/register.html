@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>タスク新規作成</title>
+</head>
+<body>
+<header>
+    <h1>タスク新規作成</h1>
+</header>
+<main>
+    <form action="{% url 'tasks:register' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>タスク名：</th>
+                <td>
+                    <input type="text" size=50 placeholder="タスク名" name="title" required>
+                </td>
+            </tr>
+            <tr>
+                <th>説明（任意）：</th>
+                <td>
+                    <textarea rows=2 cols=52 placeholder="タスクの詳細を記入してください" name="description"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>期限：</th>
+                <td>
+                    <input type="date" name="due_date" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="作成" name="register">
+                    <a href="{% url 'tasks:register' %}">reset</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</main>
+</body>
+</html>
