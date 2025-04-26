@@ -83,3 +83,27 @@ tr:last-child{
     border-radius: 0 0 var(--border-radius) 0;
   }
 }
+
+/* 進捗状況に応じて背景色を変更する */
+.status{
+    padding: 5px;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.status_select{
+    width:100%;
+}
+
+.todo{
+    background-color: #808080;
+}
+
+.doing{
+    background-color: #007bdf;
+}
+
+.done{
+    background-color: #00cc88;
+}
+

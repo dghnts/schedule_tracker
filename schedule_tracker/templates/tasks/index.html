@@ -27,6 +27,8 @@
                 <th>進捗状況</th>
                 <th>作成日時</th>
                 <th>更新日時</th>
+                <th>更新</th>
+                <th>削除</th>
             </tr>
             </thead>
 
@@ -35,9 +37,11 @@
                 <td>{{ task.title }}</td>
                 <td>{{task.description}}</td>
                 <td>{{task.due_date}}</td>
-                <td>{{task.status}}</td>
+                <td><span class="status {{ task.get_status_display }}">{{task.get_status_display}}</span></td>
                 <td>{{task.created_at}}</td>
                 <td>{{task.updated_at}}</td>
+                <td><a href="{% url 'tasks:update' task.id %}">更新</a></td>
+                <td><a href="">削除</a></td>
             </tr>
             {% endfor %}
         </table>

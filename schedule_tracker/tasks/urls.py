@@ -17,9 +17,11 @@ Including another URLconf
 from django.urls import path
 
 app_name = 'tasks'
-from .views import task_index_view, task_register_view
+from .views import task_index_view, task_register_view, task_update_view
 
 urlpatterns = [
     path('', task_index_view,name='index'),
-    path('register', task_register_view,name="register")
+    path('register', task_register_view,name="register"),
+    path('update./<int:pk>', task_update_view, name="update")
+
 ]

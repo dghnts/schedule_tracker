@@ -1,4 +1,4 @@
-.register_button {
+.submit_button {
     padding:5px 10px;
     margin-bottom: 5px;
     margin-right: 5px;
@@ -13,7 +13,7 @@
     }
 }
 
-.register_button:hover{
+.submit_button:hover{
     background-color: #198754;
 }
 
@@ -37,7 +37,7 @@
     background-color: #f0c100;
 }
 
-.submit_button{
+.button{
     display:flex;
     justify-content:right;
 }
