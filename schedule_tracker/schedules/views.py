@@ -63,7 +63,7 @@ schedule_register_view = ScheduleRegisterView.as_view()
 class ScheduleUpdateView(View):
     def get(self, request, pk, *args, **kwargs):
         # 情報を更新したいスケジュールを取得
-        # 存在しない場合は404ページを返す
+        # 存在しない場合は404エラーを返す
         schedule = get_object_or_404(Schedules, id=pk)
         tasks = Task.objects.all()
 
@@ -75,7 +75,7 @@ class ScheduleUpdateView(View):
 
     def post(self, request, pk, *args, **kwargs):
         # 情報を更新したいスケジュールを取得
-        # 存在しない場合は404ページを返す
+        # 存在しない場合は404エラーを返す
         schedule = get_object_or_404(Schedules, id=pk)
 
         # 送信された情報でscheduleの情報を更新する
@@ -96,13 +96,15 @@ schedule_update_view = ScheduleUpdateView.as_view()
 
 class ScheduleDeleteView(View):
     def get(self, request, pk, *args, **kwargs):
-        context = dict()
-        context["schedule"] = Schedules.objects.filter(id=pk).first()
+        # 情報を更新したいスケジュールを取得
+        # 存在しない場合は404エラーを返す
+        schedule = get_object_or_404(Schedules, id=pk)
+        context= {"schedule": schedule}
 
         return render(request, "schedules/delete.html", context)
 
     def post(self, request, pk, *args, **kwargs):
-        schedule = Schedules.objects.filter(id=pk).first()
+        schedule = get_object_or_404(Schedules, id=pk)
 
         schedule.delete()
 
