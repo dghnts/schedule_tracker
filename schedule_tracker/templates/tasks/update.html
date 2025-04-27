@@ -32,10 +32,11 @@
                 <tr>
                     <th>期限：</th>
                     <td>
-                        <input name="due_date"
-                               required
-                               type="date"
-                               value={{ task.due_date|date:"Y-m-d" }}
+                        <input
+                                type="date"
+                                name="due_date"
+                                required
+                                value={{ task.due_date|date:"Y-m-d" }}
                                 style="width:100%"
                         >
                     </td>

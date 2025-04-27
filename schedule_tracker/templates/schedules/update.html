@@ -4,50 +4,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>タスク更新</title>
+    <title>スケジュール更新</title>
     <link href="{% static 'css/common.css' %}" rel="stylesheet">
 </head>
 <body>
 <header>
-    <h1>タスク更新</h1>
+    <h1>スケジュール更新</h1>
 </header>
 <main>
     <div class="container">
         <form action="{% url 'schedules:update' schedule.id %}" method="post">
             {% csrf_token %}
+            {# TODO: ヘッダーの固定 #}
             <table>
                 <tr>
-                    <th class="left_corner">タスク名：</th>
+                    <th class="left_corner">スケジュール名：</th>
                     <td>
-                        <input name="title" placeholder="タスク名" required size=50 type="text" value={{ schedule.title }}>
+                        <input name="title" placeholder="スケジュール名" required schedule.title size=50 type="text"
+                               value={{ schedule.title }}>
                     </td>
                 </tr>
                 <tr>
-                    <th>説明（任意）：</th>
+                    <th>日時：</th>
                     <td>
-                        <textarea cols=52 name="description" placeholder="タスクの詳細を記入してください"
-                                  rows=2>{{ schedule.description }}</textarea>
+                        <input name="date" required schedule.date|date: type="date" value={{ schedule.date|date:"Y-m-d"}}>
                     </td>
                 </tr>
                 <tr>
-                    <th>期限：</th>
+                    <th>時間：</th>
                     <td>
-                        <input name="due_date"
-                               required
-                               type="date"
-                               value={{ schedule.due_date|date:"Y-m-d" }}
-                                style="width:100%"
-                        >
+                        <input name="time" type="time" value={{ schedule.time|time:"H:i"}}>
                     </td>
                 </tr>
                 <tr>
-                    <th>進捗状況：</th>
+                    <th>メモ：</th>
                     <td>
-                        <select name="status" class="status_select">
-                            <option value="" selected hidden>{{schedule.get_status_display}}</option>
-                            <option value="0">todo</option>
-                            <option value="1">doing</option>
-                            <option value="2">done</option>
+                        <textarea cols=52 name="memo" placeholder="作業内容についての補足など" rows=2></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>時間：</th>
+                    <td>
+                        <select name="task">
+                            <option value={{ schedule.task.id}} selected hidden>{{ schedule.task.title }}</option>
+                            {% for task in tasks %}
+                            <option value={{ task.id }} {%if>{{ task.title }}</option>
+                            {% endfor %}
                         </select>
                     </td>
                 </tr>
@@ -67,7 +69,7 @@
         </form>
     </div>
     <button class="button link">
-        <a href="{% url 'schedules:index' %}">タスク一覧へ戻る</a>
+        <a href="{% url 'schedules:index' %}">スケジュール一覧へ戻る</a>
     </button>
 </main>
 </body>
