@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>スケジュール更新</title>
+    <link href="{% static 'css/common.css' %}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>スケジュール更新</h1>
+</header>
+<main>
+    <div class="container">
+        <form action="{% url 'schedules:update' schedule.id %}" method="post">
+            {% csrf_token %}
+            {# TODO: ヘッダーの固定 #}
+            <table>
+                <tr>
+                    <th class="left_corner">スケジュール名：</th>
+                    <td>
+                        <input name="title" placeholder="スケジュール名" required schedule.title size=50 type="text"
+                               value={{ schedule.title }}>
+                    </td>
+                </tr>
+                <tr>
+                    <th>日時：</th>
+                    <td>
+                        <input name="date" required schedule.date|date: type="date" value={{ schedule.date|date:"Y-m-d"}}>
+                    </td>
+                </tr>
+                <tr>
+                    <th>時間：</th>
+                    <td>
+                        <input name="time" type="time" value={{ schedule.time|time:"H:i"}}>
+                    </td>
+                </tr>
+                <tr>
+                    <th>メモ：</th>
+                    <td>
+                        <textarea cols=52 name="memo" placeholder="作業内容についての補足など" rows=2></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>時間：</th>
+                    <td>
+                        <select name="task">
+                            <option value={{ schedule.task.id}} selected hidden>{{ schedule.task.title }}</option>
+                            {% for task in tasks %}
+                            <option value={{ task.id }} {%if>{{ task.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="button_group">
+                            <button class="button update">
+                                <input type="submit" value="更新">
+                            </button>
+                            <button class="button reset">
+                                <a href="{% url 'schedules:update' schedule.id %}">reset</a>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <button class="button link">
+        <a href="{% url 'schedules:index' %}">スケジュール一覧へ戻る</a>
+    </button>
+</main>
+</body>
+</html>

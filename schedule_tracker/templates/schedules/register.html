@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>スケジュール新規作成</title>
+    <link href="{% static 'css/common.css' %}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>スケジュール新規作成</h1>
+</header>
+<main>
+    <div class="container">
+        <form action="{% url 'schedules:register' %}" method="post">
+            {% csrf_token %}
+            {# TODO: ヘッダーの固定 #}
+            <table>
+                <tr>
+                    <th class="left_corner">スケジュール名：</th>
+                    <td>
+                        <input name="title" placeholder="スケジュール名" required size=50 type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <th>日時：</th>
+                    <td>
+                        <input type="date" name="date" value="日付" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th>時間：</th>
+                    <td>
+                        <input type="time" name="time">
+                    </td>
+                </tr>
+                <tr>
+                    <th>メモ：</th>
+                    <td>
+                        <textarea name="memo" cols=52 rows=2 placeholder="作業内容についての補足など"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>時間：</th>
+                    <td>
+                        <select name="task">
+                            {% for task in tasks %}
+                                <option value={{ task.id }}>{{ task.title }} </option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="button_group">
+                            <button class="button register">
+                                <input type="submit" value="作成">
+                            </button>
+                            <button class="button reset">
+                                <a href="{% url 'schedules:register' %}">reset</a>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <button class="button link">
+        <a href="{% url 'schedules:index' %}">スケジュール一覧へ戻る</a>
+    </button>
+</main>
+</body>
+</html>

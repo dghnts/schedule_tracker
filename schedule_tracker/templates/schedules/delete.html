@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>スケジュール削除</title>
+    <link href="{% static 'css/common.css' %}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>スケジュール削除</h1>
+</header>
+<main>
+    <div class="container">
+        <table>
+            <tr>
+                <th class="left_corner">スケジュール名：</th>
+                <td>
+                    {{ schedule.title }}
+                </td>
+            </tr>
+            <tr>
+                <th>日付：</th>
+                <td>
+                    {{ schedule.date }}
+                </td>
+            </tr>
+            <tr>
+                <th>時間：</th>
+                <td>
+                    {{ schedule.time }}
+                </td>
+            </tr>
+            <tr>
+                <th>タスク名：</th>
+                <td>
+                    {{ schedule.task.title }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <form action="{% url 'schedules:delete' schedule.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="button_group">
+                            <button class="button delete">
+                                <input type="submit" value="削除">
+                            </button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <button class="button link">
+        <a href="{% url 'schedules:index' %}">スケジュール一覧へ戻る</a>
+    </button>
+</main>
+</body>
+</html>

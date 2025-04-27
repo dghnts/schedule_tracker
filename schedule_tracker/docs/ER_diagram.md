@@ -3,7 +3,7 @@
 title: ER diagram
 ---
 erDiagram
-    Tasks ||--|| Schedules: ""
+    Tasks ||--o{ Schedules: ""
     Tasks{
         INT id PK
         VARCHAR(50) title "タスク名"
