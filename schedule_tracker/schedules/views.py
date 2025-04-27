@@ -1,4 +1,5 @@
-from datetime import datetime,date
+from contextlib import nullcontext
+from datetime import datetime,time
 from django.shortcuts import render,redirect
 from django.db.models import Q
 
@@ -34,8 +35,14 @@ class ScheduleRegisterView(View):
         return render(request,"schedules/register.html",context)
 
     def post(self, request, *args, **kwargs):
+        # 送信されたデータをコピー
+        copy = request.POST.copy()
+
+        if(not copy["time"]):
+            copy["time"] = time(0,0)
+
         #formに送信されたデータを追加
-        post_form = ScheduleRegisterForm(request.POST)
+        post_form = ScheduleRegisterForm(copy)
 
         # バリデーションエラーのチェック
         if not post_form.is_valid():

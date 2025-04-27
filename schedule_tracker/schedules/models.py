@@ -1,15 +1,17 @@
 from django.db import models
 
+from datetime import time
+
 from tasks.models import Task
 
 # Create your models here.
 class Schedules(models.Model):
     title = models.CharField(verbose_name="スケジュール名",max_length=255)
     date = models.DateField(verbose_name="日付")
-    time = models.TimeField(verbose_name="時間",blank=True)
+    time = models.TimeField(verbose_name="時間",default=time(0,0),blank=True)
     memo = models.TextField(verbose_name="メモ",blank=True)
 
-    task = models.OneToOneField(Task, verbose_name="タスクID", on_delete=models.CASCADE, related_name='schedule')
+    task = models.ForeignKey(Task, verbose_name="タスクID", on_delete=models.CASCADE, related_name='schedule')
 
     created_at = models.DateTimeField(verbose_name="作成日時", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="更新日時", auto_now=True)
