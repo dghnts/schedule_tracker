@@ -16,9 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from rest_framework.routers import DefaultRouter
+from tasks.api_views import TaskViewSet
+from schedules.api_views import ScheduleViewSet
+
+router = DefaultRouter()
+router.register(r'tasks', TaskViewSet)
+router.register(r'schedules', ScheduleViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tasks/', include('tasks.urls')),
-    path('schedules/', include('schedules.urls'))
+    path('schedules/', include('schedules.urls')),
+    ## rest_api用のルーティング
+    path('api/', include(router.urls))
 ]
